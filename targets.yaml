@@ -1,14 +1,79 @@
-# Sample Tor .onion targets for scanning
-# Add your .onion addresses here (one per line)
+# Tor .onion Targets Configuration
+# Veri çekecek siteler: Genel siteler, Forumlar, APT Grupları
 
-# Example active .onion sites (note: these are examples)
-http://protonirockerxow.onion
-thehiddenwiki.onion
-test.onion
+targets:
+  # Genel Siteler (General Sites)
+  - url: http://3g2upl4pq3khfchc.onion
+    type: search_engine
+    name: DuckDuckGo Tor
+    mock_response: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>DuckDuckGo - Tor Search Engine</title></head>
+      <body>
+      <h1>DuckDuckGo Tor Search</h1>
+      <p>Privacy-focused search engine accessible via Tor network.</p>
+      <p>Active since: 2012 | Users: 5+ million | Index: 2+ billion pages</p>
+      </body>
+      </html>
 
-# Uncomment and add real targets:
-# http://example1.onion
-# http://example2.onion
-# http://example3.onion
-# http://example4.onion
-# http://example5.onion
+  - url: http://thehiddenwiki.onion
+    type: general_site
+    name: Hidden Wiki
+    mock_response: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>The Hidden Wiki</title></head>
+      <body>
+      <h1>Welcome to The Hidden Wiki</h1>
+      <p>Community-driven directory of .onion resources.</p>
+      <p>Categories: Forums | Markets | Services | Information</p>
+      <p>Last Updated: 2025-12-30 | Verified Links: 423</p>
+      </body>
+      </html>
+
+  - url: http://msydqstlz5daysqf.onion
+    type: general_site
+    name: Imperial Library of Trantor
+    mock_response: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>Imperial Library - Academic Repository</title></head>
+      <body>
+      <h1>Imperial Library of Trantor</h1>
+      <p>Open-access repository for academic texts and research papers.</p>
+      <p>Collections: 1.5M+ Books | 500K+ Papers | Uptime: 99.8%</p>
+      <p>Mirror of: Library Genesis and Sci-Hub resources</p>
+      </body>
+      </html>
+
+  # Forumlar (Forums)
+  - url: http://kingpin5gzmk4zd3.onion
+    type: forum
+    name: Tor Forum
+    mock_response: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>Tor Community Forum</title></head>
+      <body>
+      <h1>Tor Community Discussion Forum</h1>
+      <p>Active forum for Tor network discussions and support.</p>
+      <p>Threads: 15,000+ | Users: 3,200 | Posts/Day: 450+</p>
+      <p>Topics: Anonymity | Security | Darknet | Privacy Tools</p>
+      </body>
+      </html>
+
+  - url: http://nothiddenwiki.com
+    type: forum
+    name: Security Forum
+    mock_response: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>Security & Privacy Forum</title></head>
+      <body>
+      <h1>Cybersecurity Discussion Forum</h1>
+      <p>Platform for sharing security research and threat intelligence.</p>
+      <p>Active Members: 2,800 | Discussions: 8,500+ | Reputation System: Enabled</p>
+      <p>Moderation: 24/7 | Ban Rate: 0.5% | Quality: High</p>
+      </body>
+      </html>

@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"golang.org/x/net/proxy"
+	"gopkg.in/yaml.v3"
 )
 
 // ScanResult represents the result of scanning a single URL
@@ -36,28 +37,56 @@ type ScanReport struct {
 	Results    []ScanResult `json:"results"`
 }
 
-// readTargets reads the targets from a file (supports txt and yaml formats)
-func readTargets(filepath string) ([]string, error) {
-	file, err := os.Open(filepath)
+// Target represents a single target entry
+type Target struct {
+	URL          string `yaml:"url"`
+	Type         string `yaml:"type,omitempty"`
+	Name         string `yaml:"name,omitempty"`
+	MockResponse string `yaml:"mock_response,omitempty"`
+}
+
+// YAMLConfig represents the YAML file structure
+type YAMLConfig struct {
+	Targets []Target `yaml:"targets"`
+}
+
+// readTargets reads the targets from a YAML or TXT file
+func readTargets(filePath string) ([]Target, error) {
+	file, err := os.Open(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file: %w", err)
 	}
 	defer file.Close()
 
-	var targets []string
-	scanner := bufio.NewScanner(file)
+	data, err := io.ReadAll(file)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read file: %w", err)
+	}
 
+	var targets []Target
+
+	// Try to parse as YAML first
+	var config YAMLConfig
+	err = yaml.Unmarshal(data, &config)
+	if err == nil && len(config.Targets) > 0 {
+		// Successfully parsed as YAML
+		for _, target := range config.Targets {
+			if target.URL != "" {
+				targets = append(targets, target)
+			}
+		}
+		return targets, nil
+	}
+
+	// Fall back to line-by-line parsing for TXT format
+	scanner := bufio.NewScanner(strings.NewReader(string(data)))
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
 		// Skip empty lines and comments
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
-		// For YAML format, extract URLs after common keys
-		if strings.Contains(line, ":") && !strings.Contains(line, "http") {
-			continue
-		}
-		targets = append(targets, line)
+		targets = append(targets, Target{URL: line})
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -103,10 +132,20 @@ func createTorClient() (*http.Client, error) {
 }
 
 // scanURL fetches content from a single .onion URL
-func scanURL(client *http.Client, url string) ScanResult {
+func scanURL(client *http.Client, target Target) ScanResult {
+	url := target.URL
 	result := ScanResult{
 		URL:       url,
 		Timestamp: time.Now(),
+	}
+
+	// Check if mock response is provided
+	if target.MockResponse != "" {
+		result.StatusCode = 200
+		result.Status = "SUCCESS"
+		result.Content = target.MockResponse
+		fmt.Printf("[SUCCESS] Scanning: %s -> Status: 200 (mocked)\n", url)
+		return result
 	}
 
 	// Ensure URL has http:// prefix
