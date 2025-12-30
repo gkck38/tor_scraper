@@ -1,0 +1,14 @@
+# Sample Tor .onion targets for scanning
+# Add your .onion addresses here (one per line)
+
+# Example active .onion sites (note: these are examples)
+http://protonirockerxow.onion
+thehiddenwiki.onion
+test.onion
+
+# Uncomment and add real targets:
+# http://example1.onion
+# http://example2.onion
+# http://example3.onion
+# http://example4.onion
+# http://example5.onion
