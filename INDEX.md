@@ -40,12 +40,15 @@ Welcome! This is your **Tor Scraper** - a complete Cyber Threat Intelligence too
 - **run.bat** - Windows auto-runner (one-click)
 - **run.sh** - Linux/Mac auto-runner
 
-### Documentation (5 Complete Guides)
+### Documentation (8 Complete Guides)
 1. README.md - Full documentation (3,500 words)
 2. QUICKSTART.md - 5-minute setup (2,000 words)
 3. ADVANCED.md - Advanced features (3,500 words)
 4. PROJECT_SUMMARY.md - Project overview (2,000 words)
 5. FILES_OVERVIEW.md - File descriptions (1,500 words)
+6. **REPORTING_FEATURES.md** ⭐ - Comprehensive reporting guide (NEW)
+7. **RAPORLAMA_OZELLIKLERI.md** ⭐ - Türkçe raporlama rehberi (YENİ)
+8. **REPORTING_DEMO.md** ⭐ - Example outputs and use cases (YENİ)
 
 ---
 
@@ -64,9 +67,12 @@ For each address:
   - Log result (success/failure)
     ↓
 Generate Reports:
-  - JSON format (structured data)
-  - Log file (readable summary)
-  - HTML files (content backup)
+  - JSON format (structured data) 📄
+  - CSV format (spreadsheets) 📊
+  - HTML report (visual dashboard) 🌐
+  - Text report (detailed analysis) 📝
+  - Summary file (quick reference) 📋
+  - HTML files (content backup) 📂
     ↓
 Output Folder
 ```
@@ -74,7 +80,9 @@ Output Folder
 **Key Features:**
 - ✅ Bulk scanning of multiple .onion sites
 - ✅ Error-tolerant (continues on failures)
-- ✅ Detailed reporting (JSON + logs)
+- ✅ **Comprehensive reporting** (JSON, CSV, HTML, TXT, Summary) ⭐
+- ✅ **Interactive HTML dashboard** with statistics ⭐
+- ✅ **Data export** for Excel/Google Sheets ⭐
 - ✅ Content preservation (saves HTML)
 - ✅ Easy to use (automated runners)
 - ✅ Production-ready (robust error handling)
@@ -389,6 +397,46 @@ cat output/scan_report.log
 
 ---
 
+---
+
+## 📊 Reporting System ⭐ NEW
+
+The tool now generates **5 different report formats** automatically!
+
+### Generated Reports
+
+| Format | Use Case | Example |
+|--------|----------|---------|
+| **HTML** | Visual dashboard, presentations | `scan_report.html` 🌐 |
+| **CSV** | Excel/Google Sheets analysis | `scan_report.csv` 📊 |
+| **JSON** | API integration, automation | `scan_report.json` 📄 |
+| **TXT** | Detailed text report | `scan_report.txt` 📝 |
+| **SUMMARY** | Quick reference | `SCAN_SUMMARY.txt` 📋 |
+
+### Learn About Reporting
+
+- **English Guide:** [REPORTING_FEATURES.md](REPORTING_FEATURES.md) - Comprehensive documentation
+- **Turkish Guide:** [RAPORLAMA_OZELLIKLERI.md](RAPORLAMA_OZELLIKLERI.md) - Türkçe rehber
+- **Demo & Examples:** [REPORTING_DEMO.md](REPORTING_DEMO.md) - Real output examples
+- **Main Completion:** [REPORTING_COMPLETE.md](REPORTING_COMPLETE.md) - Summary of all features
+
+### Quick Report Usage
+
+```bash
+# Run scan (automatically generates all reports)
+go run main.go targets.yaml
+
+# View reports
+start output\scan_report.html     # Windows: Opens in browser
+open output/scan_report.html      # Mac: Opens in browser
+xdg-open output/scan_report.html  # Linux: Opens in browser
+
+# Import CSV
+start output\scan_report.csv      # Windows: Opens in Excel
+```
+
+---
+
 ## 🔐 Security Notes
 
 ⚠️ This tool is for:
@@ -411,7 +459,7 @@ cat output/scan_report.log
 2. **In 5 Min:** Install Tor if needed
 3. **In 10 Min:** Create targets.yaml
 4. **In 15 Min:** Run the tool
-5. **In 20 Min:** Review results
+5. **In 20 Min:** Review results (check new reports!)
 
 ---
 
@@ -429,6 +477,9 @@ cat output/scan_report.log
 | ADVANCED.md | Advanced | For customization | No |
 | PROJECT_SUMMARY.md | Overview | Optional | No |
 | FILES_OVERVIEW.md | File guide | Optional | No |
+| **REPORTING_FEATURES.md** | Report guide | ⭐ NEW | No |
+| **RAPORLAMA_OZELLIKLERI.md** | Türkçe rehber | ⭐ YENİ | No |
+| **REPORTING_DEMO.md** | Report examples | ⭐ NEW | No |
 
 ---
 
@@ -446,7 +497,9 @@ cat output/scan_report.log
 
 ✅ **Output Success:**
 - scan_report.json created
-- scan_report.log readable
+- scan_report.html created ⭐
+- scan_report.csv created ⭐
+- scan_report.txt created
 - Content files saved
 
 ---
@@ -457,6 +510,7 @@ cat output/scan_report.log
 - 🎯 **Edit only targets.yaml** (add your .onion addresses)
 - ▶️ **Run: `go run main.go targets.yaml`**
 - 📁 **Check results in output/ folder**
+- 📊 **View reports: HTML (browser), CSV (Excel), JSON (API)** ⭐
 - 📚 **Read README.md for full details**
 - 🆘 **See ADVANCED.md if you need help**
 
@@ -471,14 +525,19 @@ Pick your starting point:
 - **I want to customize it** → [ADVANCED.md](ADVANCED.md)
 - **I want overview** → [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)
 - **I want file details** → [FILES_OVERVIEW.md](FILES_OVERVIEW.md)
+- **I want reporting details** → [REPORTING_FEATURES.md](REPORTING_FEATURES.md) ⭐
+- **I want to see report examples** → [REPORTING_DEMO.md](REPORTING_DEMO.md) ⭐
 
 ---
 
-**Version:** 1.0  
-**Status:** ✅ Ready to Use  
+**Version:** 1.1  
+**Status:** ✅ Ready to Use + Advanced Reporting  
 **Language:** Go 1.21+  
 **Time to Setup:** < 5 minutes  
-**Documentation:** Complete (12,000+ words)
+**Documentation:** Complete (15,000+ words)  
+**Reporting:** ✅ Enabled (HTML, CSV, JSON, TXT, Summary)  
+
+```
 
 Enjoy your Tor Scraper! 🎉
 
